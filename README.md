@@ -1,3 +1,7 @@
+# Dependencies
+
+* Selenium WebDriver : [Selenium - Web Browser Automation](http://www.seleniumhq.org/)
+
 # Setup
 
 # Gems
