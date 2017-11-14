@@ -1,3 +1,5 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/8b7adecc304eaf7a29d0/maintainability)](https://codeclimate.com/github/gouf/scholar_ps/maintainability)
+
 # Dependencies
 
 * Selenium WebDriver : [Selenium - Web Browser Automation](http://www.seleniumhq.org/)
