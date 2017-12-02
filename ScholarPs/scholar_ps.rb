@@ -14,4 +14,5 @@ module ScholarPs
   require_relative './contents'
   require_relative './login_info'
   require_relative './scraper'
+  require_relative './exceptions'
 end

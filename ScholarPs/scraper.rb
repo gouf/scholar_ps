@@ -16,9 +16,13 @@ module ScholarPs
       loan_id_confirm!
       detail!
       detail_page = Nokogiri::HTML(@watir.html)
-      @watir.close
 
       convert_to_hash_from_detail_page(detail_page)
+    rescue TimeoutOrIrrgularAccess => e
+      puts e.message
+      retry
+    ensure
+      @watir.close
     end
 
     private
@@ -50,6 +54,10 @@ module ScholarPs
 
       @watir.button(Forms::LoanId::Submit)
             .click
+
+      # 表示メッセージの検査
+      raise TimeoutOrIrrgularAccess if @watir.div(visible_text: /タイムアウトが発生したか、または正しくない方法で/).present?
+
       @watir
     end
 
