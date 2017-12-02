@@ -4,13 +4,14 @@ module ScholarPs
   # Scraping loan info
   class Scraper
     def initialize(login_info_obj)
+      # Mechanize gem can't be process JavaScript functions.
+      # To alternate, Watir gem will working good.
+      @watir = Watir::Browser.new(:firefox)
+
       @login_info = login_info_obj
     end
 
     def process!
-      # Mechanize gem can't be process JavaScript functions.
-      # To alternate, Watir gem will working good.
-      @watir = Watir::Browser.new(:firefox)
       login!
       loan_id_confirm!
       detail!
