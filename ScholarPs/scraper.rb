@@ -3,6 +3,10 @@ require 'nokogiri'
 module ScholarPs
   # Scraping loan info
   class Scraper
+    def initialize(login_info_obj)
+      @login_info = login_info_obj
+    end
+
     def process!
       # Mechanize gem can't be process JavaScript functions.
       # To alternate, Watir gem will working good.
@@ -18,10 +22,10 @@ module ScholarPs
       @watir.goto("#{ScholarPs::MyPage}/#{Links::Login}")
 
       @watir.text_field(Forms::Login::UserId)
-            .set(LoginInfo::UserId)
+            .set(@login_info.user_id)
 
       @watir.text_field(Forms::Login::Password)
-            .set(LoginInfo::Password)
+            .set(@login_info.password)
 
       @watir.button(Forms::Login::Submit)
             .click
@@ -29,7 +33,7 @@ module ScholarPs
     end
 
     def loan_id_confirm!
-      first, second, third = LoginInfo::LoanId.split('-')
+      first, second, third = @login_info.loan_id.split('-')
 
       @watir.text_field(Forms::LoanId::First)
             .set(first)

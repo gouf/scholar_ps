@@ -19,7 +19,13 @@ module Dump
   end
 end
 
-scraper = ScholarPs::Scraper.new
+login_info = ScholarPs::LoginInfo.new(
+  user_id: ENV['USER_ID'],
+  password: ENV['PASSWORD'],
+  loan_id: ENV['LOAN_ID']
+)
+
+scraper = ScholarPs::Scraper.new(login_info)
 detail = scraper.process!
 
 # Debug

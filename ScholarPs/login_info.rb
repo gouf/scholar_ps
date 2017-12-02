@@ -1,11 +1,10 @@
-require 'dotenv'
-Dotenv.load
+require 'ostruct'
 
 module ScholarPs
   # ScholarPs ユーザ認証情報
-  module LoginInfo
-    UserId = ENV['USER_ID'].dup.freeze
-    Password = ENV['PASSWORD'].dup.freeze
-    LoanId = ENV['LOAN_ID'].dup.freeze
+  class LoginInfo < OpenStruct
+    def initialize(user_id:, password:, loan_id:)
+      super
+    end
   end
 end
