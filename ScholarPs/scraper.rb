@@ -13,7 +13,9 @@ module ScholarPs
       @watir = Watir::Browser.new(:firefox)
       login!
       loan_id_confirm!
-      detail_page = detail!
+      detail!
+      detail_page = Nokogiri::HTML(@watir.html)
+      @watir.close
 
       convert_to_hash_from_detail_page(detail_page)
     end
@@ -53,12 +55,7 @@ module ScholarPs
     def detail!
       @watir.link(href: "/mypage/#{Links::Detail}")
             .click
-
-      page = Nokogiri::HTML(@watir.html)
-
-      @watir.close
-
-      page
+      @watir
     end
 
     def convert_to_hash_from_detail_page(detail_page)
