@@ -13,7 +13,9 @@ module ScholarPs
       @watir = Watir::Browser.new(:firefox)
       login!
       loan_id_confirm!
-      detail!
+      detail_page = detail!
+
+      convert_to_hash_from_detail_page(detail_page)
     end
 
     private
@@ -54,13 +56,18 @@ module ScholarPs
 
       page = Nokogiri::HTML(@watir.html)
 
-      # TODO: Scrape replayment detail info from viewing page
-      # detail = page.search(Contents::Detail::RepaymentInfo)
-
       @watir.close
 
-      # detail
       page
+    end
+
+    def convert_to_hash_from_detail_page(detail_page)
+      detail_page.css(ScholarPs::Contents::Detail::RepaymentInfo + ' tr')
+                 .map(&:text)
+                 .map { |str| str.gsub(/[\n\s　]+/, ' ').strip }
+                 .map { |str| str.split(' ') }
+                 .map { |ar| key, *values = ar; { key.to_s => values } }
+                 .inject({}) { |ret, h| ret.merge(h) }
     end
   end
 end
