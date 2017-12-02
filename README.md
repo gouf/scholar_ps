@@ -12,20 +12,23 @@
 bundle install
 ```
 
-## Environment variables
+## Authentication
 
-The script needs some environment variables.
-Choose one what you like below.
+The script needs some authentication informations.
 
-On shell commands:
-
-```sh
-export USER_ID=my_user_name
-export PASSWORD=my_pass_word
-export LOAN_ID=012-34-567890 # 奨学生番号
+```ruby
+login_info = ScholarPs::LoginInfo.new(
+  user_id: ENV['USER_ID'],
+  password: ENV['PASSWORD'],
+  loan_id: ENV['LOAN_ID'] # hyphen-seperated value
+)
 ```
 
-On `.env`:
+### Dotenv
+
+You can use [dotenv](https://github.com/bkeepers/dotenv) in devlopment environment.
+
+Put authentication info to `.env` file
 
 ```sh
 USER_ID=my_user_name
@@ -37,9 +40,11 @@ LOAN_ID=012-34-567890 # 奨学生番号
 
 # Usage
 
-Please read `main.rb` under project directories.
+Please read `main.rb` that in this project directories.
 
 ## Available data and format
+
+Note: It may the size of element is not always fixed.
 
 ```ruby
 # =>
