@@ -3,6 +3,7 @@
 #   + [SeleniumHQ - Downloads](http://www.seleniumhq.org/download/)
 require 'watir'
 require 'nokogiri'
+require 'ostruct'
 
 # 日本学生支援機構からローン情報ページを取得する
 module ScholarPs

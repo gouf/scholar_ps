@@ -1,5 +1,3 @@
-require 'ostruct'
-
 module ScholarPs
   # ScholarPs ユーザ認証情報
   class LoginInfo < OpenStruct

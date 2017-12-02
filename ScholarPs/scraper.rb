@@ -1,5 +1,3 @@
-require 'nokogiri'
-
 module ScholarPs
   # Scraping loan info
   class Scraper
