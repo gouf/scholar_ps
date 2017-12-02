@@ -18,7 +18,7 @@ module ScholarPs
       detail_page = Nokogiri::HTML(@watir.html)
 
       convert_to_hash_from_detail_page(detail_page)
-    rescue TimeoutOrIrrgularAccess => e
+    rescue TimeoutOrIrregularAccess => e
       puts e.message
       retry
     ensure
@@ -56,7 +56,7 @@ module ScholarPs
             .click
 
       # 表示メッセージの検査
-      raise TimeoutOrIrrgularAccess if @watir.div(visible_text: /タイムアウトが発生したか、または正しくない方法で/).present?
+      raise TimeoutOrIrregularAccess if @watir.div(visible_text: /タイムアウトが発生したか、または正しくない方法で/).present?
 
       @watir
     end
