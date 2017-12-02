@@ -1,6 +1,8 @@
 # require 'pry'
 require 'pp'
 require_relative 'ScholarPs/scholar_ps'
+# require 'dotenv' # For development environment
+# Dotenv.load
 
 # Debug Util
 # 経過データの保存と読み込み
@@ -26,18 +28,13 @@ login_info = ScholarPs::LoginInfo.new(
 )
 
 scraper = ScholarPs::Scraper.new(login_info)
-detail = scraper.process!
+detail_info = scraper.process!
 
 # Debug
 # Dump.do!(detail.serialize(save_with: Nokogiri::XML::Node::SaveOptions::AS_XML))
 # detail = Nokogiri::HTML(Dump.load)
 
-pp detail_info = detail.css(ScholarPs::Contents::Detail::RepaymentInfo + ' tr')
-  .map(&:text)
-  .map { |str| str.gsub(/[\n\s　]+/, ' ').strip }
-  .map { |str| str.split(' ') }
-  .map { |ar| key, *values = ar; {key.to_s => values} }
-  .inject({}) { |ret, h| ret.merge(h) }
+pp detail_info
 # =>
 # {"奨学生番号"=>["01234567891"],
 #  "状態"=>["延滞"],
