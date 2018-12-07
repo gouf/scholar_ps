@@ -12,5 +12,6 @@ gem 'watir'
 group :development do
   gem 'dotenv'
   gem 'pry'
+  gem 'pry-byebug'
   gem 'rubocop'
 end
