@@ -10,10 +10,13 @@ module ScholarPs
     end
 
     def process!
-      login!
-      loan_id_confirm!
-      detail!
-      detail_page = Nokogiri::HTML(@watir.html)
+      html =
+        @watir.yield_self { |watir| login!(watir) }
+              .yield_self { |watir| loan_id_confirm!(watir) }
+              .yield_self { |watir| detail!(watir) }
+              .yield_self(&:html)
+
+      detail_page = Nokogiri::HTML(html)
 
       convert_to_hash_from_detail_page(detail_page)
     rescue TimeoutOrIrregularAccess => e
@@ -25,44 +28,44 @@ module ScholarPs
 
     private
 
-    def login!
-      @watir.goto("#{ScholarPs::MyPage}/#{Links::Login}")
+    def login!(watir)
+      watir.goto("#{ScholarPs::MyPage}/#{Links::Login}")
 
-      @watir.text_field(Forms::Login::UserId)
-            .set(@login_info.user_id)
+      watir.text_field(Forms::Login::UserId)
+           .set(@login_info.user_id)
 
-      @watir.text_field(Forms::Login::Password)
-            .set(@login_info.password)
+      watir.text_field(Forms::Login::Password)
+           .set(@login_info.password)
 
-      @watir.button(Forms::Login::Submit)
-            .click
-      @watir
+      watir.button(Forms::Login::Submit)
+           .click
+      watir
     end
 
-    def loan_id_confirm!
+    def loan_id_confirm!(watir)
       first, second, third = @login_info.loan_id.split('-')
 
-      @watir.text_field(Forms::LoanId::First)
-            .set(first)
+      watir.text_field(Forms::LoanId::First)
+           .set(first)
 
-      @watir.select_list(Forms::LoanId::Second).select(second)
+      watir.select_list(Forms::LoanId::Second).select(second)
 
-      @watir.text_field(Forms::LoanId::Third)
-            .set(third)
+      watir.text_field(Forms::LoanId::Third)
+           .set(third)
 
-      @watir.button(Forms::LoanId::Submit)
-            .click
+      watir.button(Forms::LoanId::Submit)
+           .click
 
       # 表示メッセージの検査
       raise TimeoutOrIrregularAccess if @watir.div(visible_text: /タイムアウトが発生したか、または正しくない方法で/).present?
 
-      @watir
+      watir
     end
 
-    def detail!
-      @watir.link(href: "/mypage/#{Links::Detail}")
-            .click
-      @watir
+    def detail!(watir)
+      watir.link(href: "/mypage/#{Links::Detail}")
+           .click
+      watir
     end
 
     def convert_to_hash_from_detail_page(detail_page)
