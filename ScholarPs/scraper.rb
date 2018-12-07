@@ -24,6 +24,8 @@ module ScholarPs
     rescue TimeoutOrIrregularAccess => e
       puts e.message
       retry
+    rescue SiteOnMaintenance => e
+      puts e.message
     ensure
       @watir.close
     end
@@ -32,6 +34,8 @@ module ScholarPs
 
     def login!(watir)
       watir.goto("#{ScholarPs::MyPage}/#{Links::Login}")
+
+      raise SiteOnMaintenance if watir.div(visible_text: /ただいまメンテナンス中/).present?
 
       watir.text_field(Forms::Login::UserId)
            .set(@login_info.user_id)

@@ -9,4 +9,11 @@ module ScholarPs
          もう一度、始めの画面から入力しなおしてください。].join('')
     end
   end
+
+  # アクセス先がメンテナンス中で通常通りのページの表示ができない
+  class SiteOnMaintenance < StandardError
+    def message
+      'ただいまメンテナンス中です。'
+    end
+  end
 end
