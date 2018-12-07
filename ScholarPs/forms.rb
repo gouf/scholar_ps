@@ -5,20 +5,20 @@ module ScholarPs
   module Forms
     # ログイン
     module Login
-      Name = { name: 'login_open' }.freeze
-      UserId = { name: 'userId' }.freeze
-      Password = { name: 'password' }.freeze
-      Submit = { name: 'login_submit' }.freeze
+      NAME = { name: 'login_open' }.freeze
+      USER_ID = { name: 'userId' }.freeze
+      PASSWORD = { name: 'password' }.freeze
+      SUBMIT = { name: 'login_submit' }.freeze
     end
 
     # 奨学生番号の確認
     module LoanId
-      # Name attributes
-      Name = { name: 'syogkseiBgKakunin_open' }.freeze
-      First = { name: 'syogkseiBg1' }.freeze
-      Second = { name: 'syogkseiBg2' }.freeze
-      Third = { name: 'syogkseiBg3' }.freeze
-      Submit = { name: 'syogkseiBgKakunin_submit' }.freeze
+      # NAME attributes
+      NAME = { name: 'syogkseiBgKakunin_open' }.freeze
+      FIRST = { name: 'syogkseiBg1' }.freeze
+      SECOND = { name: 'syogkseiBg2' }.freeze
+      THIRD = { name: 'syogkseiBg3' }.freeze
+      SUBMIT = { name: 'syogkseiBgKakunin_submit' }.freeze
     end
   end
 end

@@ -33,17 +33,17 @@ module ScholarPs
     private
 
     def login!(watir)
-      watir.goto("#{ScholarPs::MyPage}/#{Links::Login}")
+      watir.goto("#{ScholarPs::MyPage}/#{Links::LOGIN}")
 
       raise SiteOnMaintenance if watir.div(visible_text: /ただいまメンテナンス中/).present?
 
-      watir.text_field(Forms::Login::UserId)
+      watir.text_field(Forms::Login::USER_ID)
            .set(@login_info.user_id)
 
-      watir.text_field(Forms::Login::Password)
+      watir.text_field(Forms::Login::PASSWORD)
            .set(@login_info.password)
 
-      watir.button(Forms::Login::Submit)
+      watir.button(Forms::Login::SUBMIT)
            .click
       watir
     end
@@ -51,15 +51,15 @@ module ScholarPs
     def loan_id_confirm!(watir)
       first, second, third = @login_info.loan_id.split('-')
 
-      watir.text_field(Forms::LoanId::First)
+      watir.text_field(Forms::LoanId::FIRST)
            .set(first)
 
-      watir.select_list(Forms::LoanId::Second).select(second)
+      watir.select_list(Forms::LoanId::SECOND).select(second)
 
-      watir.text_field(Forms::LoanId::Third)
+      watir.text_field(Forms::LoanId::THIRD)
            .set(third)
 
-      watir.button(Forms::LoanId::Submit)
+      watir.button(Forms::LoanId::SUBMIT)
            .click
 
       # 表示メッセージの検査
@@ -69,7 +69,7 @@ module ScholarPs
     end
 
     def findout_loan_detail!(watir)
-      watir.link(href: "/mypage/#{Links::Detail}")
+      watir.link(href: "/mypage/#{Links::DETAIL}")
            .click
       watir
     end

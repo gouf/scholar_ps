@@ -3,8 +3,8 @@
 module ScholarPs
   # ページ内のリンク情報
   module Links
-    Detail = 'syosaiJoho_open.do'
-    Login = 'login_open.do'
-    Logout = 'logout_open'
+    DETAIL = 'syosaiJoho_open.do'
+    LOGIN = 'login_open.do'
+    LOGOUT = 'logout_open'
   end
 end
