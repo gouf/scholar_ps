@@ -15,7 +15,7 @@ module ScholarPs
       html =
         @watir.yield_self { |watir| login!(watir) }
               .yield_self { |watir| loan_id_confirm!(watir) }
-              .yield_self { |watir| detail!(watir) }
+              .yield_self { |watir| findout_loan_detail!(watir) }
               .yield_self(&:html)
 
       detail_page = Nokogiri::HTML(html)
@@ -68,7 +68,7 @@ module ScholarPs
       watir
     end
 
-    def detail!(watir)
+    def findout_loan_detail!(watir)
       watir.link(href: "/mypage/#{Links::Detail}")
            .click
       watir
