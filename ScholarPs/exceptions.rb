@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ScholarPs
   # 認証情報は正しいけれど、何らかの原因で通常通りのページの表示ができない
   class TimeoutOrIrregularAccess < StandardError

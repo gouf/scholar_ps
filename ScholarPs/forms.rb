@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ScholarPs
   # ScholarPs 入力フォーム
   module Forms
@@ -14,7 +16,7 @@ module ScholarPs
       # Name attributes
       Name = { name: 'syogkseiBgKakunin_open' }.freeze
       First = { name: 'syogkseiBg1' }.freeze
-      Second = { name: 'syogkseiBg2'}.freeze
+      Second = { name: 'syogkseiBg2' }.freeze
       Third = { name: 'syogkseiBg3' }.freeze
       Submit = { name: 'syogkseiBgKakunin_submit' }.freeze
     end

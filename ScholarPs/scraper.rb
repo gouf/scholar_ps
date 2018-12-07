@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ScholarPs
   # Scraping loan info
   class Scraper
