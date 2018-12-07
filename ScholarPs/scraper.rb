@@ -59,7 +59,7 @@ module ScholarPs
            .click
 
       # 表示メッセージの検査
-      raise TimeoutOrIrregularAccess if @watir.div(visible_text: /タイムアウトが発生したか、または正しくない方法で/).present?
+      raise TimeoutOrIrregularAccess if watir.div(visible_text: /タイムアウトが発生したか、または正しくない方法で/).present?
 
       watir
     end
