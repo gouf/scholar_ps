@@ -12,10 +12,10 @@ module ScholarPs
   BaseUrl = 'https://scholar-ps.sas.jasso.go.jp'
   MyPage = "#{BaseUrl}/mypage"
 
-  require_relative './forms'
-  require_relative './links'
-  require_relative './contents'
-  require_relative './login_info'
-  require_relative './scraper'
+  require_relative './scraper/forms'
+  require_relative './scraper/links'
+  require_relative './scraper/contents'
+  require_relative './scraper/login_info'
+  require_relative './scraper/scraper'
   require_relative './exceptions'
 end
