@@ -45,7 +45,7 @@ module ScholarPs
       @watir.text_field(Forms::LoanId::First)
             .set(first)
 
-      @watir.select_list(*Forms::LoanId::Second).select(second)
+      @watir.select_list(Forms::LoanId::Second).select(second)
 
       @watir.text_field(Forms::LoanId::Third)
             .set(third)
