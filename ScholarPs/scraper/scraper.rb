@@ -13,9 +13,9 @@ module ScholarPs
 
     def process!
       html =
-        @watir.yield_self { |watir| login!(watir) }
-              .yield_self { |watir| loan_id_confirm!(watir) }
-              .yield_self { |watir| findout_loan_detail!(watir) }
+        @watir.yield_self(&method(:login!))
+              .yield_self(&method(:loan_id_confirm!))
+              .yield_self(&method(:findout_loan_detail!))
               .yield_self(&:html)
 
       detail_page = Nokogiri::HTML(html)
